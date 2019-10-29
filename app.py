@@ -16,8 +16,8 @@ githublink = 'https://github.com/calijason76/dash-table-example'
 mytitle = 'Beer Comparison'
 label1 = 'Beer Ratings'
 label2 = 'ABV'
-color1='lightblue'
-color2='darkgreen'
+color1='purple'
+color2='yellow'
 
 ########### Set up the data
 df = pd.read_csv(filename)
