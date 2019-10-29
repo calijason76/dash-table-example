@@ -25,35 +25,6 @@ beers = df['Beer Name']
 ratings = df['Ratings (Averag)']
 abv = df['Alcohol By Volume (ABV)']
 
-########### Initiate the app
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
-app.title=tabtitle
-
-########### Set up the layout
-app.layout = html.Div(children=[
-    html.H1(myheading),
-    html.H3(mysubheading),
-
-    dash_table.DataTable(
-        id='table',
-        columns=[{"name": i, "id": i} for i in df.columns],
-        data=df.to_dict('records'),
-    ),
-    html.Br(),
-    dcc.Graph(
-        id = 'beer_compare'
-        figure = beer_fig
-    ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A("Data Source", href=sourceurl),
-    html.Br(),
-    html.A("Plotly Dash", href='https://plot.ly/python/pie-charts/')
-    ]
-)
-
 ########### Set up the chart
 bratings = go.Bar(
     x=beers,
@@ -75,6 +46,36 @@ beer_layout = go.Layout(
 )
 
 beer_fig = go.Figure(data=beer_data, layout=beer_layout)
+
+
+########### Initiate the app
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
+app.title=tabtitle
+
+########### Set up the layout
+app.layout = html.Div(children=[
+    html.H1(myheading),
+    html.H3(mysubheading),
+
+    dash_table.DataTable(
+        id='table',
+        columns=[{"name": i, "id": i} for i in df.columns],
+        data=df.to_dict('records'),
+    ),
+    html.Br(),
+    dcc.Graph(
+        id = 'beer_compare',
+        figure = beer_fig
+    ),
+    html.A('Code on Github', href=githublink),
+    html.Br(),
+    html.A("Data Source", href=sourceurl),
+    html.Br(),
+    html.A("Plotly Dash", href='https://plot.ly/python/pie-charts/')
+    ]
+)
 
 ############ Deploy
 if __name__ == '__main__':
